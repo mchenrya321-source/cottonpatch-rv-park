@@ -39,15 +39,15 @@ export default function QuickInfo() {
           {stats.map(({ icon: Icon, value, label, desc }) => (
             <div
               key={label}
-              className="flex flex-col items-center text-center px-4 py-6 lg:py-4 gap-2"
+              className="flex flex-col items-center text-center px-3 py-4 lg:py-4 gap-1.5 lg:gap-2"
             >
               <div className="w-10 h-10 rounded-full bg-rust/20 flex items-center justify-center mb-1">
                 <Icon size={20} className="text-rust-light" aria-hidden="true" />
               </div>
-              <p className="font-display text-2xl lg:text-3xl font-bold text-white leading-none">
+              <p className="font-display text-xl lg:text-3xl font-bold text-white leading-none">
                 {value}
               </p>
-              <p className="text-rust-light font-semibold text-xs sm:text-sm tracking-wide uppercase font-sans">
+              <p className="text-rust-light font-semibold text-[10px] sm:text-sm tracking-wide uppercase font-sans leading-tight">
                 {label}
               </p>
               <p className="text-white/55 text-xs font-sans leading-snug max-w-[180px] hidden sm:block">

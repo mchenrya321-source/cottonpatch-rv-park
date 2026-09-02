@@ -3,28 +3,27 @@ import { Star } from "lucide-react";
 export default function Reviews() {
   return (
     <section
-      className="bg-cream py-12 sm:py-16"
+      className="bg-cream py-10 sm:py-14"
       aria-labelledby="reviews-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-lg mx-auto text-center">
           <p className="text-rust font-semibold text-xs sm:text-sm tracking-[0.18em] uppercase mb-3 font-sans">
             Guest Feedback
           </p>
           <h2
             id="reviews-heading"
-            className="font-display text-2xl sm:text-3xl font-bold text-navy mb-8"
+            className="font-display text-xl sm:text-3xl font-bold text-navy mb-6"
           >
             Early Guests Love It
           </h2>
 
-          {/* Rating display */}
-          <div className="inline-flex flex-col items-center bg-white border border-cream-dark rounded-2xl px-8 py-6 shadow-sm shadow-navy/5 mb-6">
+          <div className="inline-flex flex-col items-center bg-white border border-cream-dark rounded-2xl px-8 py-5 shadow-sm shadow-navy/5 mb-5">
             <div className="flex items-center gap-1 mb-2" aria-label="5 out of 5 stars">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  size={24}
+                  size={22}
                   className="text-[#f5a623] fill-[#f5a623]"
                   aria-hidden="true"
                 />
@@ -37,9 +36,8 @@ export default function Reviews() {
             </p>
           </div>
 
-          <p className="text-navy/60 text-sm font-sans max-w-sm mx-auto">
-            We&rsquo;re a newly opened park and proud of the experience we&rsquo;re
-            already delivering. More reviews are on the way as we grow.
+          <p className="text-navy/55 text-sm font-sans max-w-sm mx-auto">
+            Newly opened and already earning five stars. More reviews on the way.
           </p>
         </div>
       </div>

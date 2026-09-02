@@ -44,11 +44,15 @@ export default function Gallery() {
   const closeLightbox = () => setLightboxIndex(null);
 
   const prev = useCallback(() => {
-    setLightboxIndex((i) => (i !== null ? (i - 1 + images.length) % images.length : null));
+    setLightboxIndex((i) =>
+      i !== null ? (i - 1 + images.length) % images.length : null
+    );
   }, []);
 
   const next = useCallback(() => {
-    setLightboxIndex((i) => (i !== null ? (i + 1) % images.length : null));
+    setLightboxIndex((i) =>
+      i !== null ? (i + 1) % images.length : null
+    );
   }, []);
 
   useEffect(() => {
@@ -69,25 +73,49 @@ export default function Gallery() {
   return (
     <section
       id="gallery"
-      className="bg-cream-dark py-16 sm:py-20 lg:py-24"
+      className="bg-cream-dark py-10 sm:py-16 lg:py-24"
       aria-labelledby="gallery-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-10 lg:mb-12">
-          <p className="text-rust font-semibold text-xs sm:text-sm tracking-[0.18em] uppercase mb-3 font-sans">
+        <div className="text-center mb-6 lg:mb-10">
+          <p className="text-rust font-semibold text-xs sm:text-sm tracking-[0.18em] uppercase mb-2 font-sans">
             Photo Gallery
           </p>
           <h2
             id="gallery-heading"
-            className="font-display text-3xl sm:text-4xl font-bold text-navy"
+            className="font-display text-2xl sm:text-4xl font-bold text-navy"
           >
             See the Park
           </h2>
         </div>
 
-        {/* Masonry-style grid */}
-        <div className="columns-2 md:columns-3 gap-3 sm:gap-4 space-y-3 sm:space-y-4">
+        {/* ─── MOBILE: uniform 2-col grid ─────────────────────────────────── */}
+        <div className="grid grid-cols-2 gap-2.5 md:hidden">
+          {images.map((img, idx) => (
+            <button
+              key={img.src}
+              type="button"
+              onClick={() => openLightbox(idx)}
+              className="relative rounded-xl overflow-hidden cursor-zoom-in group"
+              aria-label={`View larger: ${img.caption}`}
+            >
+              <div className="relative w-full aspect-[4/3]">
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover rounded-xl group-active:scale-[1.02] transition-transform duration-150"
+                  sizes="50vw"
+                />
+                <div className="absolute inset-0 bg-navy/0 group-active:bg-navy/20 transition-colors duration-150 rounded-xl" />
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* ─── DESKTOP: masonry columns ───────────────────────────────────── */}
+        <div className="hidden md:block columns-3 gap-4 space-y-4">
           {images.map((img, idx) => (
             <button
               key={img.src}
@@ -103,10 +131,9 @@ export default function Gallery() {
                   width={800}
                   height={600}
                   className="w-full h-auto object-cover rounded-xl group-hover:scale-[1.03] transition-transform duration-300"
-                  sizes="(max-width: 768px) 50vw, 33vw"
+                  sizes="33vw"
                 />
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/30 transition-colors duration-300 rounded-xl flex items-end p-3">
+                <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/25 transition-colors duration-300 rounded-xl flex items-end p-3">
                   <span className="text-white text-xs font-sans font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-navy/60 px-2 py-1 rounded-md">
                     {img.caption}
                   </span>
@@ -126,7 +153,6 @@ export default function Gallery() {
           aria-label={`Gallery image: ${images[lightboxIndex].caption}`}
           onClick={closeLightbox}
         >
-          {/* Image container */}
           <div
             className="relative max-w-5xl w-full max-h-[85vh] flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
@@ -140,13 +166,11 @@ export default function Gallery() {
               sizes="100vw"
               priority
             />
-            {/* Caption */}
             <p className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white/80 text-sm font-sans bg-black/40 px-3 py-1 rounded-full whitespace-nowrap">
               {images[lightboxIndex].caption}
             </p>
           </div>
 
-          {/* Close */}
           <button
             type="button"
             onClick={closeLightbox}
@@ -156,7 +180,6 @@ export default function Gallery() {
             <X size={24} />
           </button>
 
-          {/* Prev */}
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); prev(); }}
@@ -166,7 +189,6 @@ export default function Gallery() {
             <ChevronLeft size={24} />
           </button>
 
-          {/* Next */}
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); next(); }}
@@ -176,7 +198,6 @@ export default function Gallery() {
             <ChevronRight size={24} />
           </button>
 
-          {/* Counter */}
           <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-xs font-sans">
             {lightboxIndex + 1} / {images.length}
           </p>

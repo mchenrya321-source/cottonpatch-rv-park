@@ -11,7 +11,6 @@ import Location from "./components/Location";
 import Reviews from "./components/Reviews";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
-import MobileBottomCTA from "./components/MobileBottomCTA";
 
 export default function Home() {
   return (
@@ -31,7 +30,6 @@ export default function Home() {
         <FinalCTA />
       </main>
       <Footer />
-      <MobileBottomCTA />
     </>
   );
 }
