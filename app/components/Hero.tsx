@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Phone, ChevronDown } from "lucide-react";
+import { Phone, ChevronDown, MapPin } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -41,6 +41,18 @@ export default function Hero() {
           Comfortable RV Living in Rayville,{" "}
           <span className="text-rust-light">Louisiana</span>
         </h1>
+
+        {/* Address */}
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=160+Caston+Rd,+Rayville,+LA"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-cream/75 hover:text-rust-light transition-colors duration-200 text-sm sm:text-base font-sans mb-6 md:mb-8"
+          aria-label="Get directions to 160 Caston Rd, Rayville, LA on Google Maps"
+        >
+          <MapPin size={16} className="text-rust-light flex-shrink-0" aria-hidden="true" />
+          160 Caston Rd, Rayville, LA
+        </a>
 
         {/* Supporting text */}
         <p className="text-cream/85 text-base sm:text-xl max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed font-sans font-light">
